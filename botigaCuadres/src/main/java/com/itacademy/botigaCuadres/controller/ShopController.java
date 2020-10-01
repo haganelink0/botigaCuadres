@@ -11,34 +11,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itacademy.botigaCuadres.dto.ShopResponseDto;
+import com.itacademy.botigaCuadres.service.impl.PaintingServiceImpl;
 import com.itacademy.botigaCuadres.service.impl.ShopServiceImpl;
 
 @RestController
 @RequestMapping("/apishop/")
 public class ShopController {
 	
-	ShopServiceImpl service;
+	ShopServiceImpl shopService;
+	PaintingServiceImpl paintingService;
+
 	
 	@Autowired
-	public ShopController(ShopServiceImpl service) {
-		this.service = service;
+	public ShopController(ShopServiceImpl shopService, PaintingServiceImpl paintingService) {
+		this.shopService = shopService;
+		this.paintingService = paintingService;
 	}
 	
 	@GetMapping("/shops/")
 	public ResponseEntity<Iterable<ShopResponseDto>> viewAllShops() {
-		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+		return new ResponseEntity<>(shopService.getAll(), HttpStatus.OK);
 		
 	}
 	
 	@PutMapping("/shops/")
 	public void insertShop(ShopResponseDto shop) {
-		service.insertShop(shop);
+		shopService.insertShop(shop);
 	}
 	
 	@DeleteMapping("/shops/{name}")
 	public void deleteShop(@RequestParam String name) {
-		ShopResponseDto tempShop = service.getShop(name);
-		service.deleteShop(tempShop);
+		ShopResponseDto tempShop = shopService.getShop(name);
+		shopService.deleteShop(tempShop);
 	}
 	
 
