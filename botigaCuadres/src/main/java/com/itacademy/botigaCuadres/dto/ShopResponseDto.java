@@ -50,6 +50,13 @@ public class ShopResponseDto extends ResponseDTO {
 		this.maxCapacity = maxCapacity;
 	}
 	
+	public boolean hasSpace() {
+		if (maxCapacity > paints.size()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 
 }
