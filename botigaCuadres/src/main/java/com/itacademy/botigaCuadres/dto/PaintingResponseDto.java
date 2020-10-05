@@ -17,8 +17,8 @@ import javax.persistence.Table;
 public class PaintingResponseDto extends ResponseDTO {
 	
 	@Id
-	@Column(name = "Id")
-	@GeneratedValue(strategy= GenerationType.AUTO, generator="native")
+	@Column(name = "id", unique=true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	@Column(name = "title")
 	private String title;

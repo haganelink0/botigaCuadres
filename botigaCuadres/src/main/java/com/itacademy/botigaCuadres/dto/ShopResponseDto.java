@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class ShopResponseDto extends ResponseDTO {
 	
 	@Id
-	@Column(name = "ShopId", unique=true, nullable = false)
+	@Column(name = "shopid", unique=true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer shopId;
 	
