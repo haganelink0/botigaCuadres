@@ -5,6 +5,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -16,22 +18,34 @@ import javax.persistence.Table;
 public class ShopResponseDto extends ResponseDTO {
 	
 	@Id
-	@Column(name = "ShopName")
-	private String shopName;
+	@Column(name = "ShopId", unique=true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer shopId;
+	
+	@Column(name="ShopName")
+	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="shopName")
+	@JoinColumn(name="shopid")
 	private Set<PaintingResponseDto> paints;
 	
 	@Column(name="maxCapacity")
 	private Integer maxCapacity;
 
-	public String getShopName() {
-		return shopName;
+	public Integer getShopId() {
+		return shopId;
 	}
 
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
+	public void setShopId(Integer shopId) {
+		this.shopId = shopId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Set<PaintingResponseDto> getPaints() {
@@ -51,11 +65,11 @@ public class ShopResponseDto extends ResponseDTO {
 	}
 	
 	public boolean hasSpace() {
+		boolean response = false;
 		if (maxCapacity > paints.size()) {
-			return true;
-		} else {
-			return false;
-		}
+			response = true;;
+		} 
+		return response;
 	}
 	
 

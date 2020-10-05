@@ -31,6 +31,7 @@ public class PaintingResponseDto extends ResponseDTO {
 	@ManyToOne
 	@JoinColumn(name ="shopName")
 	private ShopResponseDto shop;
+	
 	public int getId() {
 		return id;
 	}
