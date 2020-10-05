@@ -11,13 +11,10 @@ import com.itacademy.botigaCuadres.service.IShopService;
 
 @Service
 public class ShopServiceImpl implements IShopService {
-		
-	private final ShopRepository repository;
 	
 	@Autowired
-	public ShopServiceImpl(ShopRepository repository) {
-		this.repository = repository;
-	}
+	ShopRepository repository;
+	
 
 	@Override
 	public ShopResponseDto getShop(String name) {

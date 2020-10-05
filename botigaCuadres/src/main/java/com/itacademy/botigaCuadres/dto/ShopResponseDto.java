@@ -4,14 +4,14 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
 
-@Component
+@Entity
 @Table(name="shops")
 public class ShopResponseDto extends ResponseDTO {
 	

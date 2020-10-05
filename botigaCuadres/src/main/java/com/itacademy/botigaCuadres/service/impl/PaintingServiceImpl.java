@@ -11,12 +11,8 @@ import com.itacademy.botigaCuadres.service.IPaintingService;
 @Service
 public class PaintingServiceImpl implements IPaintingService {
 	
-	private final PaintingRepository repository;
-	
 	@Autowired
-	public PaintingServiceImpl(PaintingRepository repository) {
-		this.repository = repository;
-	}
+	PaintingRepository repository;
 
 	@Override
 	public Iterable<PaintingResponseDto> getPaintingByShop(ShopResponseDto shop) {

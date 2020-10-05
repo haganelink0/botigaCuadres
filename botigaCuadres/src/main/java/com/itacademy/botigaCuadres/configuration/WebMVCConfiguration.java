@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-@ComponentScan(basePackages = {"springBootInitialDemo"})
+@ComponentScan(basePackages = {"com.itacademy.botigaCuadres"})
 @Configuration
 @EnableWebMvc
 public class WebMVCConfiguration implements WebMvcConfigurer {
