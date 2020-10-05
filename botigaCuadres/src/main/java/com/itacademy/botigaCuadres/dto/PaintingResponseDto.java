@@ -29,7 +29,7 @@ public class PaintingResponseDto extends ResponseDTO {
 	@Column(name = "entry_date")
 	private String entryDate;
 	@ManyToOne
-	@JoinColumn(name ="shopName")
+	@JoinColumn(name ="shopid")
 	private ShopResponseDto shop;
 	
 	public int getId() {

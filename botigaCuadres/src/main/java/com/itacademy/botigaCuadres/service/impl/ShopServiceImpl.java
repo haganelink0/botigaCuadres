@@ -17,10 +17,10 @@ public class ShopServiceImpl implements IShopService {
 	
 
 	@Override
-	public ShopResponseDto getShop(String name) {
-		Optional<ShopResponseDto> shop = repository.findById(name);
+	public ShopResponseDto getShop(Integer id) {
+		Optional<ShopResponseDto> shop = repository.findById(id);
 		if (shop.isPresent()) {
-			return repository.findById(name).get();
+			return repository.findById(id).get();
 		}
 		return null;
 	}
