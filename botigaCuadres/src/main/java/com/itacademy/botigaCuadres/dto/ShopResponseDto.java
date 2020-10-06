@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="shops")
@@ -26,6 +28,7 @@ public class ShopResponseDto extends ResponseDTO {
 	
 	@OneToMany(mappedBy="shop", cascade = {
 			CascadeType.ALL})
+	@JsonIgnore
 	private List<PaintingResponseDto> paints;
 	
 	@Column(name="max_capacity")

@@ -17,7 +17,7 @@ public class ShopServiceImpl implements IShopService {
 	
 
 	@Override
-	public ShopResponseDto getShop(Long id) {
+	public ShopResponseDto getShop(int id) {
 		Optional<ShopResponseDto> shop = repository.findById(id);
 		if (shop.isPresent()) {
 			return shop.get();

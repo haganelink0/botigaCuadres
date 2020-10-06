@@ -7,7 +7,7 @@ import com.itacademy.botigaCuadres.dto.ShopResponseDto;
 @Service
 public interface IShopService {
 	
-	ShopResponseDto getShop(Long id);
+	ShopResponseDto getShop(int id);
 	
 	Iterable<ShopResponseDto> getAll();
 	

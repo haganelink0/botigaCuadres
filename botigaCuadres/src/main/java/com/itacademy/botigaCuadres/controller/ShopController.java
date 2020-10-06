@@ -45,7 +45,7 @@ public class ShopController {
 	}
 	
 	@DeleteMapping("/shops/{id}")
-	public void deleteShop(@PathVariable Long id) throws ResourceNotFound {
+	public void deleteShop(@PathVariable int id) throws ResourceNotFound {
 		ShopResponseDto tempShop = shopService.getShop(id);
 		if (tempShop==null) {
 			throw new ResourceNotFound("Shop not found");
@@ -55,7 +55,7 @@ public class ShopController {
 	}
 	
 	@PostMapping(path="/shops/{id}/painting", consumes="application/json")
-	public void addPainting(@PathVariable Long id,@RequestBody PaintingResponseDto painting) throws ShopIsFull {
+	public void addPainting(@PathVariable int id,@RequestBody PaintingResponseDto painting) throws ShopIsFull {
 		ShopResponseDto tempShop = shopService.getShop(id);
 		if (tempShop.hasSpace()) {
 			painting.setShop(tempShop);
@@ -67,10 +67,10 @@ public class ShopController {
 	}
 	
 	@GetMapping("/shops/{id}/painting")
-	public ResponseEntity<Iterable<PaintingResponseDto>> viewPaintings(@PathVariable Long id) throws ResourceNotFound {
+	public ResponseEntity<Iterable<PaintingResponseDto>> viewPaintings(@PathVariable int id) throws ResourceNotFound {
 		ShopResponseDto tempShop = shopService.getShop(id);
 		if (tempShop.getName().isEmpty()) {
-			throw new ResourceNotFound("Instructor not found :: " + id);
+			throw new ResourceNotFound("Shop not found: " + id);
 		}
 
 		return new ResponseEntity<>(paintingService.getPaintingByShop(tempShop), HttpStatus.OK);
