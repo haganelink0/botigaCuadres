@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.itacademy.botigaCuadres.controller.exceptions.ResourceNotFound;
+import com.itacademy.botigaCuadres.controller.exceptions.ShopIsFull;
 import com.itacademy.botigaCuadres.dto.PaintingResponseDto;
 import com.itacademy.botigaCuadres.dto.ShopResponseDto;
 import com.itacademy.botigaCuadres.service.impl.PaintingServiceImpl;
@@ -42,22 +45,34 @@ public class ShopController {
 	}
 	
 	@DeleteMapping("/shops/{id}")
-	public void deleteShop(@PathVariable Long id) {
+	public void deleteShop(@PathVariable Long id) throws ResourceNotFound {
 		ShopResponseDto tempShop = shopService.getShop(id);
+		if (tempShop==null) {
+			throw new ResourceNotFound("Shop not found");
+		}
 		shopService.deleteShop(tempShop);
 		paintingService.deleteAllPaintings(tempShop);
 	}
 	
 	@PostMapping(path="/shops/{id}/painting", consumes="application/json")
-	public void addPainting(@PathVariable Long id,@RequestBody PaintingResponseDto painting) {
+	public void addPainting(@PathVariable Long id,@RequestBody PaintingResponseDto painting) throws ShopIsFull {
 		ShopResponseDto tempShop = shopService.getShop(id);
-		painting.setShop(tempShop);
-		paintingService.savePainting(painting);
+		if (tempShop.hasSpace()) {
+			painting.setShop(tempShop);
+			paintingService.savePainting(painting);
+		} else {
+			throw new ShopIsFull("Shop is full");
+		}
+		
 	}
 	
 	@GetMapping("/shops/{id}/painting")
-	public ResponseEntity<Iterable<PaintingResponseDto>> viewPaintings(@PathVariable Long id) {
+	public ResponseEntity<Iterable<PaintingResponseDto>> viewPaintings(@PathVariable Long id) throws ResourceNotFound {
 		ShopResponseDto tempShop = shopService.getShop(id);
+		if (tempShop.getName().isEmpty()) {
+			throw new ResourceNotFound("Instructor not found :: " + id);
+		}
+
 		return new ResponseEntity<>(paintingService.getPaintingByShop(tempShop), HttpStatus.OK);
 	}
 	

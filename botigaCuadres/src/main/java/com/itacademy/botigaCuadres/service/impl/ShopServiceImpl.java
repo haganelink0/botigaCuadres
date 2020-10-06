@@ -20,7 +20,7 @@ public class ShopServiceImpl implements IShopService {
 	public ShopResponseDto getShop(Long id) {
 		Optional<ShopResponseDto> shop = repository.findById(id);
 		if (shop.isPresent()) {
-			return repository.findById(id).get();
+			return shop.get();
 		}
 		return null;
 	}
