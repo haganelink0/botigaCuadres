@@ -23,15 +23,12 @@ import com.itacademy.botigaCuadres.service.impl.ShopServiceImpl;
 			 methods= {RequestMethod.GET, RequestMethod.POST})
 public class ShopController {
 	
-	ShopServiceImpl shopService;
-	PaintingServiceImpl paintingService;
-
+	@Autowired
+	private ShopServiceImpl shopService;
 	
 	@Autowired
-	public ShopController(ShopServiceImpl shopService, PaintingServiceImpl paintingService) {
-		this.shopService = shopService;
-		this.paintingService = paintingService;
-	}
+	private PaintingServiceImpl paintingService;
+
 	
 	@GetMapping("/shops/")
 	public ResponseEntity<Iterable<ShopResponseDto>> viewAllShops() {
@@ -45,21 +42,21 @@ public class ShopController {
 	}
 	
 	@DeleteMapping("/shops/{id}")
-	public void deleteShop(@PathVariable Integer id) {
+	public void deleteShop(@PathVariable Long id) {
 		ShopResponseDto tempShop = shopService.getShop(id);
 		shopService.deleteShop(tempShop);
 		paintingService.deleteAllPaintings(tempShop);
 	}
 	
 	@PostMapping(path="/shops/{id}/painting", consumes="application/json")
-	public void addPainting(@PathVariable Integer id,@RequestBody PaintingResponseDto painting) {
+	public void addPainting(@PathVariable Long id,@RequestBody PaintingResponseDto painting) {
 		ShopResponseDto tempShop = shopService.getShop(id);
 		painting.setShop(tempShop);
 		paintingService.savePainting(painting);
 	}
 	
 	@GetMapping("/shops/{id}/painting")
-	public ResponseEntity<Iterable<PaintingResponseDto>> viewPaintings(@PathVariable Integer id) {
+	public ResponseEntity<Iterable<PaintingResponseDto>> viewPaintings(@PathVariable Long id) {
 		ShopResponseDto tempShop = shopService.getShop(id);
 		return new ResponseEntity<>(paintingService.getPaintingByShop(tempShop), HttpStatus.OK);
 	}

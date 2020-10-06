@@ -8,7 +8,7 @@ import com.itacademy.botigaCuadres.dto.PaintingResponseDto;
 import com.itacademy.botigaCuadres.dto.ShopResponseDto;
 
 @Repository
-public interface PaintingRepository extends JpaRepository<PaintingResponseDto, Integer> {
+public interface PaintingRepository extends JpaRepository<PaintingResponseDto, Long> {
 	
 	Iterable<PaintingResponseDto> findByShop(ShopResponseDto shop);
 	
