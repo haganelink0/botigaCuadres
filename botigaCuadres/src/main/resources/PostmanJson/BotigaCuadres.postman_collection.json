@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "4fa7e9a9-9928-4c80-a0ec-7d4c1f4939c8",
+		"name": "BotigaCuadres",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/apishop/shops/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/apishop/shops/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apishop",
+						"shops",
+						""
+					]
+				},
+				"description": "Request Get method to get all shops available at the appi"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/apishop/shops/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"shopId\": 1,\r\n    \"name\": \"theshop\",\r\n    \"paints\": [],\r\n    \"maxCapacity\": 11\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apishop/shops/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apishop",
+						"shops",
+						""
+					]
+				},
+				"description": "Post method to add new shops."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/apishop/shops/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/apishop/shops/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apishop",
+						"shops",
+						"1"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Deletes de shop of the id sent"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/apishop/shops/1/painting",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/apishop/shops/1/painting",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apishop",
+						"shops",
+						"1",
+						"painting"
+					]
+				},
+				"description": "gets all the paintings for the shop with the corresponding id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/apishop/shops/1/painting",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"createdAt\": 1199142001000,\r\n        \"updatedAt\": 1199142002000,\r\n        \"id\": 2,\r\n        \"title\": \"Batman\",\r\n        \"author\": \"Tim\",\r\n        \"price\": 45999.0,\r\n        \"shop\": {\r\n            \"createdAt\": 1577833201000,\r\n            \"updatedAt\": 1577833202000,\r\n            \"shopId\": 1,\r\n            \"name\": \"Theshop\",\r\n            \"maxCapacity\": 30\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apishop/shops/1/painting",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apishop",
+						"shops",
+						"1",
+						"painting"
+					]
+				},
+				"description": "Saves a painting on the shop provided by id."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
